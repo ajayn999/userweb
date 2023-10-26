@@ -1,0 +1,69 @@
+- entry point is layout page
+- first page is page.js
+- "use client" 
+--------------
+routing
+- basic routing 
+localhost:3000/about
+
+- esme about ka folder banana padega fir inside page.js 
+- always used page.js folder 
+
+
+-------------------
+Link /Navigation
+- linking jab hum anchar tage use karte he tab (Link Tage)
+- Navigation jab hum button tag use karte he tab 
+in nextjs language 
+
+- anchar ke liye use Link tag and other thing is same 
+- button ke liye 
+  - top "use client"
+  - useRouter from next/Navigation
+  exp 
+  "use client"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+
+export default function Home() {
+  const naviga = useRouter()
+  return (
+    <main >
+      <div>
+        <h1>this is User App</h1>
+        <button onClick={()=> naviga.push('/about')}>click to about </button>
+      
+      </div>
+    </main>
+  )
+}
+
+
+-----------------------------------------
+nested routing 
+
+- normal routing home,about,login,profile,setting
+- nested routing about - about student,about college
+
+
+localhost:3000/about/aboutstudent
+
+- esme aboutstudent inside about ka folder banana padega fir inside page.js 
+- always used page.js folder 
+
+
+-------------------------------------
+coment layout 
+- navbar, footer
+- layout.js name fix no other name 
+kisi b folder me bana sakte he 
+for css any name and import 
+
+---------------------------------------
+conditional layout.js
+- agar hume kisi jaga navbar nai dikhana ho to 
+- 
+====================
+dynamic routing
+- ID base

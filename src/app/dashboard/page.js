@@ -1,6 +1,6 @@
 import { createClient } from "contentful";
 
-export const getStaticProps = async ()=>{
+export const getdata = async ()=>{
     const spaceId = process.env.CONTENTFUL_SPACE_ID;
     const accessToken = process.env.CONTENTFUL_ACCESS_KEY;
     const apiUrl = `https://cdn.contentful.com/spaces/${spaceId}/entries?content_type=userwebapp`;

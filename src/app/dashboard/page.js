@@ -1,19 +1,37 @@
-import { CreateClient } from "contentful";
+import { createClient } from "contentful";
 
 export const getStaticProps = async ()=>{
-    const client = CreateClient({
-        space : process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-    })
+    const spaceId = process.env.CONTENTFUL_SPACE_ID;
+    const accessToken = process.env.CONTENTFUL_ACCESS_KEY;
+    const apiUrl = `https://cdn.contentful.com/spaces/${spaceId}/entries?content_type=userwebapp`;
 
-
-const res = await client.getEntery({content_type: "userwebapp"})
-return{
-    props:{
-         data: res.items
-    }
-}
-
+    try {
+        const response = await fetch(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error('Failed to fetch data from Contentful');
+        }
+    
+        const data = await response.json();
+    
+        return {
+          props: {
+            data: data.items,
+          },
+        };
+      } catch (error) {
+        console.error('Error fetching data from Contentful:', error);
+    
+        return {
+          props: {
+            data: [],
+          },
+        };
+      }
 
 }
 
